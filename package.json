@@ -1,0 +1,28 @@
+{
+  "name": "myfirstvote",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agomez95/myfirstvote.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/agomez95/myfirstvote/issues"
+  },
+  "homepage": "https://github.com/agomez95/myfirstvote#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.1.3",
+    "lite-server": "^2.6.1"
+  }
+}

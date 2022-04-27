@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/libs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./main.css">
+    <title>DAAP Votes</title>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-4">
+
+                <div class="card card-body rounded-0 mb-4 bg-dark">
+                    <h1>Aplicación de Votos</h1>
+                    <h6 class="text-muted">Decentralized Vote App</h6>
+                    <span>Wallet</span>
+                    <span>Aqui va el codigo</span>
+                </div>
+
+                <form class="card card-body bg-dark rounded-0">
+                    <h4>Do your Vote</h4>
+                    <input type="text" placeholder="Write your name" class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <select class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                        <option value="" selected disabled hidden>Elija un Candidato</option>
+                        <option value="Primero">El primero</option>
+                        <option value="Segundo">El segundo</option>
+                        <option value="Tercero">El tercero</option>
+                    </select>
+                    <button class="btn btn-primary">Vote</button>
+                </form>
+
+            </div>
+            <div class="col-md-8">
+                <div class="card bg-dark">
+                    <h2>Votaciones</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Scripts-->
+
+    <script src="./app.js"></script>
+</body>
+</html>
