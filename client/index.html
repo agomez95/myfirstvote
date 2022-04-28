@@ -17,13 +17,13 @@
                     <h1>Aplicación de Votos</h1>
                     <h6 class="text-muted">Decentralized Vote App</h6>
                     <span>Wallet</span>
-                    <span>Aqui va el codigo</span>
+                    <span id="account"></span>
                 </div>
 
-                <form class="card card-body bg-dark rounded-0">
+                <form class="card card-body bg-dark rounded-0" id="voteForm">
                     <h4>Do your Vote</h4>
-                    <input type="text" placeholder="Write your name" class="form-control bg-dark text-white rounded-0 border-0 my-2">
-                    <select class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <input name="fullname" type="text" placeholder="Write your name" class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <select name="option" class="form-control bg-dark text-white rounded-0 border-0 my-2">
                         <option value="" selected disabled hidden>Elija un Candidato</option>
                         <option value="Primero">El primero</option>
                         <option value="Segundo">El segundo</option>
@@ -43,6 +43,8 @@
 
     <!--Scripts-->
 
+    <script src="./libs/@truffle/contract/dist/truffle-contract.min.js"></script>
+    <script src="./ui.js"></script>
     <script src="./app.js"></script>
 </body>
 </html>
