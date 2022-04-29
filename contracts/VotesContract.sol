@@ -3,7 +3,8 @@ pragma solidity ^0.8.6;
 
 contract VotesContract {
 
-    uint public counter = 0;
+    //contador o id para los votos
+    uint public votesCounter = 0;
 
     /**Cuando se cree este contrato se ejecutara el siguiente constructor */
     constructor () {
@@ -38,10 +39,10 @@ contract VotesContract {
 
     //hacer el voto
     function doVote(string memory _fullname, string memory _option) public {
-        counter++;
-        votes[counter] = Vote(counter, _fullname, _option, false, block.timestamp);
+        votesCounter++;
+        votes[votesCounter] = Vote(votesCounter, _fullname, _option, false, block.timestamp);
         //con esto recibo la tarea que se creo por medio del evento de arriba
-        emit VoteMade(counter, _fullname, _option, false, block.timestamp);
+        emit VoteMade(votesCounter, _fullname, _option, false, block.timestamp);
     }
 
     //procesar el voto
