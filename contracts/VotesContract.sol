@@ -8,7 +8,7 @@ contract VotesContract {
 
     /**Cuando se cree este contrato se ejecutara el siguiente constructor */
     constructor () {
-        doVote("Usuario Prueba", "Opcion Prueba");
+        doVote("Usuario 1", "Opcion Prueba");
     }
 
     //con este describire que se devuelve una vez hecho un voto

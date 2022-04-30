@@ -1,5 +1,6 @@
 App = {
     contracts: {},
+    candidates: {},
     init: async () => {
         console.log('Loaded')
         await App.loadEthereum()
@@ -7,6 +8,7 @@ App = {
         await App.loadContracts()
         App.render()
         await App.renderVotes()
+        await App.renderCandidates()
     },
 
     loadEthereum: async () => {
@@ -29,17 +31,22 @@ App = {
     },
 
     loadContracts: async () => {
-        const res = await fetch("VotesContract.json")
-        const votesContractJSON = await res.json()
+        const resVotes = await fetch("VotesContract.json")
+        const resCandidates = await fetch("CandidatesContract.json")
+        const votesContractJSON = await resVotes.json()
+        const candidatesContractJSON = await resCandidates.json()
 
         /*al objeto votesContract le pasamos el contrato desplegado(json) mediante truffle*/
         App.contracts.votesContract = TruffleContract(votesContractJSON)
+        App.candidates.candidatesContract = TruffleContract(candidatesContractJSON)
 
         /*asignamos un proveedor al contrato mediante el proveedio por la web(el de metamask) para conectarnos*/
         App.contracts.votesContract.setProvider(App.web3Provider)
+        App.candidates.candidatesContract.setProvider(App.web3Provider)
 
         /**ahora vamos a desplegar el contrato*/
         App.votesContract = await App.contracts.votesContract.deployed()
+        App.candidatesContract = await App.candidates.candidatesContract.deployed()
     },
 
     render: () => {
@@ -47,6 +54,27 @@ App = {
         document.getElementById('account').innerText = App.account
     },
 
+    renderCandidates: async() => {
+        const candidateCounter = await App.candidatesContract.candidatesCounter()
+        const candidateCounterNumber = candidateCounter.toNumber()
+        
+        let html = ''
+
+        for (let i = 1; i <= candidateCounterNumber; i++) {
+            const candidate = await App.candidatesContract.candidates(i)  
+            const candidateId = vote[0]
+            const candidateFullName = vote[1]
+            const candidateAgrupation = vote[2]
+            const voteCreated = vote[3]
+            
+            let candidateElement = `
+                <option value="${candidateAgrupation}">${candidateFullName}</option>
+            `
+            html += voteElement 
+        }
+        document.querySelector('#selectCandidate').innerHTML = html
+    },
+    
     renderVotes: async () => {
         const voteCounter = await App.votesContract.votesCounter()
         const voteCounterNumber = voteCounter.toNumber()
@@ -80,7 +108,7 @@ App = {
             `
             html += voteElement 
         }
-        document.querySelector('#voteList').innerHTML = html
+        document.querySelector('#voteForm').innerHTML = html
     },
 
     doVote: async (fullname, option) => {
@@ -91,14 +119,20 @@ App = {
         window.location.reload()
     },
 
+    addCandidate: async(fullname, agrupation) => {
+        const result = await App.candidatesContract.addCandidate(fullname, agrupation, {
+            from: App.account
+        })
+        console.log(result.logs[0].args)
+        //window.location.reload()
+    },
+
     proccessVote: async (element) => {
         const voteId = element.dataset.id
 
         await App.votesContract.proccessVote(voteId, {
             from: App.account
         })
-
         window.location.reload()
-        //console.log(element.dataset.id)
     }
 }

@@ -20,14 +20,18 @@
                     <span id="account"></span>
                 </div>
 
-                <form class="card card-body bg-dark rounded-0" id="voteForm">
+                <form class="card card-body bg-dark mb-4 rounded-0" id="candidateForm">
+                    <h4>Subscribe a candidate</h4>
+                    <input name="fullname" type="text" placeholder="Write your name" class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <input name="agrupation" type="text" placeholder="Write the agrupation" class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <button class="btn btn-primary">Save</button>
+                </form>
+
+                <form class="card card-body bg-dark rounded-0">
                     <h4>Do your Vote</h4>
                     <input name="fullname" type="text" placeholder="Write your name" class="form-control bg-dark text-white rounded-0 border-0 my-2">
-                    <select name="option" class="form-control bg-dark text-white rounded-0 border-0 my-2">
+                    <select name="option" class="form-control bg-dark text-white rounded-0 border-0 my-2" id="selectCandidate"> 
                         <option value="" selected disabled hidden>Elija un Candidato</option>
-                        <option value="Primero">El primero</option>
-                        <option value="Segundo">El segundo</option>
-                        <option value="Tercero">El tercero</option>
                     </select>
                     <button class="btn btn-primary">Vote</button>
                 </form>
