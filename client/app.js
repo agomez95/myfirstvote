@@ -62,15 +62,15 @@ App = {
 
         for (let i = 1; i <= candidateCounterNumber; i++) {
             const candidate = await App.candidatesContract.candidates(i)  
-            const candidateId = vote[0]
-            const candidateFullName = vote[1]
-            const candidateAgrupation = vote[2]
-            const voteCreated = vote[3]
+            const candidateId = candidate[0]
+            const candidateFullName = candidate[1]
+            const candidateAgrupation = candidate[2]
+            const voteCreated = candidate[3]
             
             let candidateElement = `
                 <option value="${candidateAgrupation}">${candidateFullName}</option>
             `
-            html += voteElement 
+            html += candidateElement 
         }
         document.querySelector('#selectCandidate').innerHTML = html
     },
@@ -101,14 +101,14 @@ App = {
                         </div>
                     </div>
                     <div class="card-body">
-                        <span>Voto: ${voteOption}</span>
+                        <span>Voto(Partido): ${voteOption}</span>
                         <p class="text-muted">Vote made on ${new Date(voteCreated * 1000).toLocaleString()}</p>
                     </div>
                 </div>
             `
             html += voteElement 
         }
-        document.querySelector('#voteForm').innerHTML = html
+        document.querySelector('#voteList').innerHTML = html
     },
 
     doVote: async (fullname, option) => {
@@ -123,8 +123,8 @@ App = {
         const result = await App.candidatesContract.addCandidate(fullname, agrupation, {
             from: App.account
         })
-        console.log(result.logs[0].args)
-        //window.location.reload()
+        //console.log(result.logs[0].args)
+        window.location.reload()
     },
 
     proccessVote: async (element) => {
